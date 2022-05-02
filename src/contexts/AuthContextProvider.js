@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useHistory } from 'react-router-dom';
 import { auth } from '../firebase';
 
-const AuthContext = React.createContext();
+export const AuthContext = React.createContext();
 
 const AuthContextProvider = ({children}) => {
 
@@ -14,6 +14,7 @@ const AuthContextProvider = ({children}) => {
         auth.onAuthStateChanged(user => {
             setUser(user);
             setLoading(false);
+            console.log(user);
             if(user) history.push("/chats");
         })
     }, [user, history])
